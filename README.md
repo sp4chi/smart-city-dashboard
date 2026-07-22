@@ -1,0 +1,129 @@
+# Smart City Dashboard
+
+An AI-native operations platform that gives city administrators one place to see, understand, and act on everything happening across utilities, transport, infrastructure, and public services.
+
+> Software analytics only — no physical IoT implementation. All device/sensor data is simulated for demo purposes.
+
+---
+
+## Table of Contents
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+- [Users](#users)
+- [Architecture](#architecture)
+- [Data Model](#data-model)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Development Timeline](#development-timeline)
+- [Roadmap](#roadmap)
+
+---
+
+## Overview
+
+City data today is scattered across disconnected systems — one for utilities, another for traffic, another for maintenance tickets. Administrators have no single, real-time view of what's happening across the city, making it hard to spot problems early, coordinate response across departments, or make decisions backed by data instead of gut feeling.
+
+**Smart City Dashboard** unifies this into one AI-powered platform: real-time visibility, predictive insights, and a conversational advisor that lets staff ask questions in plain language instead of digging through reports.
+
+## Problem Statement
+
+Smart cities require centralized visibility into municipal operations, utilities, transportation, public services, and infrastructure management. This project builds an AI-native smart city operations platform covering:
+
+- **Core operations**: City Dashboard, Utility Monitoring, Infrastructure Registry, Incident Management
+- **AI intelligence**: Urban Trend Prediction, AI City Advisor, Resource Optimization, Operational Insights
+- **Command layer**: Enterprise RAG, Multi-Agent Command Center, GIS & Analytics Integration
+
+## Users
+
+- **Primary**: City administrators, department heads, and operations staff (utilities, transport, public works, incident response)
+- **Secondary**: Field crews receiving assigned tasks/incidents
+- **Tertiary** *(future)*: Citizens submitting incident reports via a public-facing form
+
+## Architecture
+
+Four layers, bottom-up:
+
+| Layer | Contents |
+|---|---|
+| **Command layer** | Enterprise RAG, Multi-agent command center, GIS & analytics |
+| **AI intelligence layer** | Trend prediction, AI city advisor, Resource optimization, Operational insights |
+| **Core operations layer** | City dashboard, Utility monitoring, Infrastructure registry, Incident management |
+| **Data & integration layer** | Utility/sensor feeds, GIS & municipal records, Public service systems |
+
+## Data Model
+
+Core entities: `Zone`, `Asset`, `UtilityReading`, `Incident`, `Crew`, `PolicyDocument`, `Insight`.
+
+See [`docs/data-model.md`](docs/data-model.md) for the full schema and ERD. *(create this file when the schema is finalized)*
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | FastAPI (Python) |
+| Frontend | React + Vite |
+| Database | PostgreSQL + PostGIS (spatial), TimescaleDB (time-series) |
+| Vector store | pgvector / Weaviate (for RAG) |
+| AI/LLM orchestration | LangGraph (or similar) for multi-agent routing |
+| Mapping | Mapbox / Leaflet |
+
+## Project Structure
+
+```
+smart-city-dashboard/
+├── backend/          # FastAPI application
+├── frontend/         # React + Vite application
+├── docs/             # Data model, architecture notes, diagrams
+├── DEVELOPMENT_LOG.md # Chronological build journal
+├── README.md
+└── package.json       # Root-level scripts to run both apps together
+```
+
+## Getting Started
+
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- PostgreSQL (with PostGIS extension)
+
+### Install
+```bash
+npm run install:all
+```
+
+### Run (dev mode)
+```bash
+npm run dev
+```
+- Backend: `http://localhost:8000`
+- Frontend: `http://localhost:5173` (default Vite port)
+
+### Environment variables
+Create a `.env` file in `backend/` with at least:
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/smartcity
+```
+
+## Development Timeline
+
+2-week solo build. See [`DEVELOPMENT_LOG.md`](DEVELOPMENT_LOG.md) for the day-by-day journal.
+
+| Days | Focus |
+|---|---|
+| 1–2 | Planning, data model, mock data design |
+| 3–7 | Data ingestion + core operations layer (dashboard, utility monitoring, infrastructure registry, incident management) |
+| 8–11 | AI layer (trend prediction, resource optimization, operational insights, RAG setup) |
+| 12–13 | Command layer (AI advisor, multi-agent orchestration, GIS integration) |
+| 14 | Integration, polish, demo prep |
+
+## Roadmap
+
+- [ ] Citizen-facing incident reporting portal
+- [ ] Real IoT sensor integration (currently simulated)
+- [ ] Multi-city / multi-tenant support
+- [ ] Role-based access control for departments
+
+---
+
+*This project was built as a solo effort. See `DEVELOPMENT_LOG.md` for design decisions, trade-offs, and problems encountered along the way.*
