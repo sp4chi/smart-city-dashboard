@@ -6,3 +6,8 @@ dist/
 atlas-credentials.env
 github-recovery-codes-*.txt
 backend/.env
+.vscode
+.mypy_cache
+__pycache__/
+*.pyc
+venv/
